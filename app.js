@@ -30,12 +30,12 @@ function onMouseMove(event){
     if(!painting){
         ctx.beginPath();
         ctx.moveTo(x,y);
-        console.log('begin', x, y);
+        // console.log('begin', x, y);
     }else {
         // true 일때
         ctx.lineTo(x, y);
         ctx.stroke();
-        console.log('line', x, y);
+        // console.log('line', x, y);
     }
 }
 
@@ -44,17 +44,17 @@ function onMouseMove(event){
  * @param event
  */
 function handleColor(event){
-    console.log(event);
-    console.log(event.target); // 이벤트가 발생한곳
-    console.log(event.currentTarget); // 이벤트가 등록된 곳
-    console.log(event.target.style.backgroundColor);
+    // console.log(event);
+    // console.log(event.target); // 이벤트가 발생한곳
+    // console.log(event.currentTarget); // 이벤트가 등록된 곳
+    // console.log(event.target.style.backgroundColor);
     const clickedColor = event.target.style.backgroundColor;
     ctx.strokeStyle = clickedColor;
     ctx.fillStyle = clickedColor;
 }
 
 function changeSlider(event){
-    console.log(event.target.value);
+    // console.log(event.target.value);
     ctx.lineWidth = event.target.value;
 }
 
