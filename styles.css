@@ -20,7 +20,7 @@ body {
 }
 
 .controls {
-    margin-top: 70px;
+    margin-top: 10px;
 }
 
 .controls_colors {
@@ -37,7 +37,7 @@ body {
 }
 
 .slide_container {
-    margin-top: 50px;
+    margin-top: 10px;
     /*width: 100%; !* Width of the outside container *!*/
 }
 

@@ -6,6 +6,7 @@ const controls_colors = document.querySelector('.controls_colors');
 const jsRange = document.getElementById('jsRange');
 const jsMode = document.getElementById('jsMode');
 const jsSave = document.getElementById('jsSave');
+const jsClear = document.getElementById('jsClear');
 
 const CANVAS_WIDTH = 700
     ,CANVAS_HEIGHT = 700;
@@ -52,6 +53,21 @@ function handleColor(event){
     ctx.strokeStyle = clickedColor;
     ctx.fillStyle = clickedColor;
 }
+function backupStatus(obj){
+    obj.fillStyle = ctx.fillStyle;
+    obj.filling = filling;
+}
+
+function restoreStatus(obj){
+    ctx.fillStyle = obj.fillStyle;
+    filling = obj.filling;
+}
+
+function clearCanvas(){
+    ctx.fillStyle = "#FFFFFF";
+    filling = true;
+    fillCanvas();
+}
 
 function changeSlider(event){
     // console.log(event.target.value);
@@ -97,7 +113,14 @@ function handleClickSaveButton(event){
     link.click();
 }
 
+function handleClickClearButton(event){
+    // 캔버스를 흰색으로 칠해줌.
+    let backupStatusObj = {};
+    backupStatus(backupStatusObj);
+    clearCanvas();
+    restoreStatus(backupStatusObj);
 
+}
 
 function init(){
 // 항상 이런식으로 DOM이 존재하는지 확인 후에 해당 DOM을 핸들링 하는게 좋은 코딩방식!
@@ -114,24 +137,23 @@ function init(){
         // 색깔 컨트롤들의 상위태그에 이벤트를 등록하여 event delegation을 이용하여 각 색깔 div들에 이벤트 리스너를 등록한 것 처럼 함.
         controls_colors.addEventListener('click', handleColor);
     }
-
     if (ctx){
         ctx.width = 700;
         ctx.height = 700;
         ctx.strokeStyle = "#2c2c2c";
         ctx.lineWidth = 0.3;
-
     }
-
     if(jsRange) {
         jsRange.addEventListener('input', changeSlider);
     }
-
     if(jsMode){
         jsMode.addEventListener('click', handleClickModeButton);
     }
     if(jsSave){
         jsSave.addEventListener('click', handleClickSaveButton);
+    }
+    if(jsClear){
+        jsClear.addEventListener('click', handleClickClearButton);
     }
 
 
